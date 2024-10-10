@@ -26,13 +26,25 @@ function boxesClear(){
     }); 
 }
 
+isInputOk = false;
 function guessNum(){
     const guessnums = document.querySelectorAll(".container span input");
     guessnums.forEach( (item,index) => {
-        guessNums.push(item.value);
+        if(item.value != null){
+            guessNums.push(item.value);
+            isInputOk = true;
+        }
+        else{
+            isInputOk = false;
+        }
     });
+    if(!isInputOk){  //FIX THIS LOGIC RESET ARRAT INPUTNUMS IS !isInputOk
+        alert("Please fill every input!")
+        guessNums = [];
+    }
     console.log(guessNums);
 }
+
 btn_submit.addEventListener("click",guessNum);
 
 function thePlay() {
