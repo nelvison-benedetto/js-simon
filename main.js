@@ -1,5 +1,6 @@
 //const mapRandomNums = new Map(); 
 const arrRandomNums = [];
+boxesRnums = document.querySelectorAll(".container span strong");
 
 function generateRandomNums(){
     for(let i=0; i<5; i++){
@@ -7,10 +8,32 @@ function generateRandomNums(){
         arrRandomNums.push(rnum);
         //console.log(arrRandomNums);
     }
-};
-generateRandomNums();
-emptyxRnums = document.querySelectorAll(".container span strong");
+}
+function generateInputBox(){
+    const inputBox = document.createElement("input");
+    inputBox.type = "text";
+    inputBox.value = "testtest";
+    return inputBox;
+}
+function boxesClear(){
+    boxesRnums.forEach( (item,index) => {
+        //item.innerHTML = null;
+        item.replaceWith(generateInputBox());
+    }); 
+}
 
-emptyxRnums.forEach( (item,index) => {
-    item.innerHTML = arrRandomNums[index];
-}); 
+
+function guessNum(){
+
+}
+
+function thePlay() {
+    generateRandomNums();
+    boxesRnums.forEach( (item,index) => {
+        item.innerHTML = arrRandomNums[index];
+    }); 
+    const theTimeout = setTimeout(boxesClear, 3000);
+
+}
+
+thePlay();
