@@ -1,12 +1,28 @@
 //const mapRandomNums = new Map(); 
 const arrRandomNums = [];
-boxesRnums = document.querySelectorAll(".container span strong");
-btn_submit = document.querySelectorAll(".container button");
 var guessNums = [];
+const container = document.querySelector(".container");
+const boxesRnums = document.querySelectorAll(".container span strong");
+const btn_submit = document.querySelectorAll(".container button");
 
-function readArrGuss(){
-    console.log(guessNums);
+new_h3 = document.createElement("h3");
+new_h4 = document.createElement("h4");
+var guessedNums = [];
+
+function readArrGuess(){
+    guessedNums = [];
+    container.appendChild(new_h3);
+    arrRandomNums.forEach( (item,index) => {
+        console.log(typeof item);
+        if(guessNums[index]=== item){
+            console.log(typeof guessNums[index]);
+            guessedNums.push(guessNums[index]);
+        }
+    }); 
+    new_h3.textContent = `guessed numbers: ${guessedNums.join(",")}`;
+    score();
 }
+
 
 function generateRandomNums(){
     for(let i=0; i<5; i++){
@@ -35,9 +51,9 @@ function guessNum(){
     isNullInput = false;
     const guessnums = document.querySelectorAll(".container span input");
     guessnums.forEach( (item,index) => {
-        if(item.value != ""){
-            guessNums.push(item.value);
-            console.log("added to arr guessNums");
+        if(item.value.trim() !== "" && !isNaN(item.value)){
+            guessNums.push(Number(item.value));
+            //console.log("added to arr guessNums");
         }
         else{
             isNullInput = true;
@@ -45,13 +61,17 @@ function guessNum(){
     });
     if(isNullInput){
         guessNums = [];
-        alert("Enter all inputs!");
+        alert("Enter all inputs in numbers!");
     }
-    console.log(guessNums);
+    else{ readArrGuess();}
+    //console.log(guessNums);
+}
+function score(){
+    container.appendChild(new_h4);
+    new_h4.textContent = `success score: ${guessedNums.length * 20}%`;
 }
 
 btn_submit[0].addEventListener("click",guessNum);
-btn_submit[1].addEventListener("click",readArrGuss);
 
 function thePlay() {
     generateRandomNums();
@@ -63,4 +83,8 @@ function thePlay() {
 
 thePlay();
 
-
+/**
+ * dddd
+ * ddd
+ * ddd
+ */
