@@ -4,7 +4,6 @@ boxesRnums = document.querySelectorAll(".container span strong");
 btn_submit = document.querySelector(".container button");
 var guessNums = [];
 
-
 function generateRandomNums(){
     for(let i=0; i<5; i++){
         let rnum = Math.floor(Math.random() * 5) + 1;
@@ -16,6 +15,7 @@ function generateInputBox(){
     const inputBox = document.createElement("input");
     inputBox.type = "text";
     inputBox.placeholder = "guess the number";
+    inputBox.required = true;
     return inputBox;
 }
 function boxesClear(){
@@ -26,21 +26,22 @@ function boxesClear(){
     }); 
 }
 
-isInputOk = false;
 function guessNum(){
+    guessNums = [];
+    isNullInput = false;
     const guessnums = document.querySelectorAll(".container span input");
     guessnums.forEach( (item,index) => {
-        if(item.value != null){
+        if(item.value != ""){
             guessNums.push(item.value);
-            isInputOk = true;
+            console.log("added to arr guessNums");
         }
         else{
-            isInputOk = false;
+            isNullInput = true;
         }
     });
-    if(!isInputOk){  //FIX THIS LOGIC RESET ARRAT INPUTNUMS IS !isInputOk
-        alert("Please fill every input!")
+    if(isNullInput){
         guessNums = [];
+        alert("Enter all inputs!");
     }
     console.log(guessNums);
 }
