@@ -1,8 +1,12 @@
 //const mapRandomNums = new Map(); 
 const arrRandomNums = [];
 boxesRnums = document.querySelectorAll(".container span strong");
-btn_submit = document.querySelector(".container button");
+btn_submit = document.querySelectorAll(".container button");
 var guessNums = [];
+
+function readArrGuss(){
+    console.log(guessNums);
+}
 
 function generateRandomNums(){
     for(let i=0; i<5; i++){
@@ -46,7 +50,8 @@ function guessNum(){
     console.log(guessNums);
 }
 
-btn_submit.addEventListener("click",guessNum);
+btn_submit[0].addEventListener("click",guessNum);
+btn_submit[1].addEventListener("click",readArrGuss);
 
 function thePlay() {
     generateRandomNums();
